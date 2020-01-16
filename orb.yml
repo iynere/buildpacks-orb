@@ -1,11 +1,14 @@
-# orb review
-
 version: 2.1
 description: Cloud Native Buildpacks Orb
+
+# orbs now offer a `home_url` and `source_url` key which you might want to use here—see example:
+# https://github.com/CircleCI-Public/orb-starter-kit/blob/master/src/%40orb.yml
 
 orbs:
   docker: circleci/docker@0.5.18
   orb-tools: circleci/orb-tools@8.8.0
+  # neither of these orbs seem to be used in your orb source—perhaps you don't need them?
+
 jobs:
   build:
     description: "Build OCI Image"
@@ -74,7 +77,7 @@ commands:
     description: "Setup and install pack"
     parameters:
       install-dir:
-        default: ~/bin
+        default: ~/bin # will this directory exist and be writeable across all possible execution environments? not sure, just asking
         description: |
           Directory in which to install Pack binary
         type: string
@@ -98,7 +101,7 @@ examples:
     usage:
       version: 2.1
       orbs:
-        buildpacks: jkutner/buildpacks@x.y.z
+        buildpacks: jkutner/buildpacks@x.y.z # we now recommend using just `x.y` in examples, to socialize the practice of receiving automatic patch updates to orbs
       workflows:
         main:
           jobs:
